@@ -8,5 +8,6 @@ export const types = {
 	calculate: '[CALCULATE] CALCULATE',
 	multiply: '[CALCULATE] MULTIPLY',
 	minus: '[CALCULATE] MINUS',
-	plus: '[CALCULATE] CLEAN',
+	plus: '[CALCULATE] PLUS',
+	result: '[CALCULATE] RESULT'
 }
