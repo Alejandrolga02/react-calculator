@@ -10,21 +10,21 @@ import {
 	RiNumber7, 
 	RiNumber8, 
 	RiNumber9,
-	FaMinus,
 	FaDivide,
 	FaTimes,
-	FaEquals,
-	FaPlus,
 	TbLetterC,
-	BsBackspace
+	BsDot,
 } from 'react-icons/all';
 
 import { NumberButton } from "./NumberButton";
 import { ClearButton } from "./ClearButton";
 import { BackspaceButton } from "./BackspaceButton";
 import { ResultBox } from './ResultBox';
+import { MinusButton } from './MinusButton';
 
 import './styles.css';
+import { PlusButton } from './PlusButton';
+import { ResultButton } from './ResultButton';
 
 export const CalculatorApp = () => {
 	return (
@@ -34,25 +34,26 @@ export const CalculatorApp = () => {
 
 				<ClearButton  icon={<TbLetterC />}/>
 				<ClearButton  icon={<FaDivide />}/>
-				<BackspaceButton  icon={<BsBackspace />}/>
-				<ClearButton  icon={<FaEquals />}/>
+				<BackspaceButton />
+				<ResultButton />
 
-				<NumberButton value={7} icon={<RiNumber7 />}/>
-				<NumberButton value={8} icon={<RiNumber8 />}/>
-				<NumberButton value={9} icon={<RiNumber9 />}/>
+				<NumberButton value={"7"} icon={<RiNumber7 />}/>
+				<NumberButton value={"8"} icon={<RiNumber8 />}/>
+				<NumberButton value={"9"} icon={<RiNumber9 />}/>
 				<ClearButton  icon={<FaTimes />}/>
 
-				<NumberButton value={4} icon={<RiNumber4 />}/>
-				<NumberButton value={5} icon={<RiNumber5 />}/>
-				<NumberButton value={6} icon={<RiNumber6 />}/>
-				<ClearButton  icon={<FaMinus />}/>
+				<NumberButton value={"4"} icon={<RiNumber4 />}/>
+				<NumberButton value={"5"} icon={<RiNumber5 />}/>
+				<NumberButton value={"6"} icon={<RiNumber6 />}/>
+				<MinusButton />
 
-				<NumberButton value={1} icon={<RiNumber1 />}/>
-				<NumberButton value={2} icon={<RiNumber2 />}/>
-				<NumberButton value={3} icon={<RiNumber3 />}/>
-				<ClearButton  icon={<FaPlus />}/>
+				<NumberButton value={"1"} icon={<RiNumber1 />}/>
+				<NumberButton value={"2"} icon={<RiNumber2 />}/>
+				<NumberButton value={"3"} icon={<RiNumber3 />}/>
+				<PlusButton />
 
-				<NumberButton value={0} icon={<RiNumber0 />}/>
+				<NumberButton value={"."} icon={<BsDot />}/>
+				<NumberButton value={"0"} icon={<RiNumber0 />}/>
 			</div>
 		</IconContext.Provider>
 	);
