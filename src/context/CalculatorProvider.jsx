@@ -19,7 +19,7 @@ export const CalculatorProvider = ({ children }) => {
 
 	const changeInput = (value) => {
 		const payload = value;
-		
+
 		const action = {
 			type: types.typedIn,
 			payload,
@@ -45,19 +45,13 @@ export const CalculatorProvider = ({ children }) => {
 		dispatch(action);
 	};
 
-	const minusClicked = () => {
+	const setOperation = (operation) => {
 		const action = {
-			type: types.minus,
-			payload: calculatorState.input,
-		};
-
-		dispatch(action);
-	};
-
-	const plusClicked = () => {
-		const action = {
-			type: types.plus,
-			payload: calculatorState.input,
+			type: types.operation,
+			payload: {
+				operation,
+				value: calculatorState.input
+			},
 		};
 
 		dispatch(action);
@@ -89,8 +83,7 @@ export const CalculatorProvider = ({ children }) => {
 				changeInput,
 				cleanClicked,
 				backspaceClicked,
-				minusClicked,
-				plusClicked,
+				setOperation,
 				resultClicked,
 			}}>
 			{children}

@@ -1,13 +1,8 @@
 export const types = {
-	operation: '[CALCULATE] OPERATION',
 	numberClicked: '[CALCULATE] NUMBER CLICKED',
 	typedIn: '[CALCULATE] TYPED IN',
+	operation: '[CALCULATE] OPERATION',
 	clean: '[CALCULATE] CLEAN',
-	divide: '[CALCULATE] DIVIDE',
+	result: '[CALCULATE] RESULT',
 	backspace: '[CALCULATE] BACKSPACE',
-	calculate: '[CALCULATE] CALCULATE',
-	multiply: '[CALCULATE] MULTIPLY',
-	minus: '[CALCULATE] MINUS',
-	plus: '[CALCULATE] PLUS',
-	result: '[CALCULATE] RESULT'
 }

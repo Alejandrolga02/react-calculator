@@ -23,21 +23,15 @@ export const calculatorReducer = (state = {}, action) => {
 			}
 		}
 
-		case types.minus: {
-			const { payload } = action;
-			console.log(payload);
-			const value = parseFloat(payload);
-
-			if (!value) {
-				return state;
-			}
+		case types.operation: {
+			const { value, operation } = action.payload;
 
 			return {
 				...state,
 				input: '',
 				prevInput: value,
-				displayOperation: `${value} -`,
-				operation: `-`
+				displayOperation: `${value} ${operation}`,
+				operation
 			}
 		}
 
