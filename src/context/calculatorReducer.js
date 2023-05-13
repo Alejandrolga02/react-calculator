@@ -4,8 +4,10 @@ import { operations, cleanNumber } from '../helpers';
 export const calculatorReducer = (state = {}, action) => {
 	switch (action.type) {
 		case types.numberClicked: { 
-			const value = cleanNumber(state.input + action.payload);
-			
+			const { input } = state;
+			const { payload } = action;
+
+			const value = cleanNumber(input + payload);
 			return {
 				...state,
 				input: value,
@@ -14,7 +16,8 @@ export const calculatorReducer = (state = {}, action) => {
 		}
 
 		case types.typedIn: {
-			const value = cleanNumber(action.payload);
+			const { payload } = action;
+			const value = cleanNumber(payload);
 
 			return {
 				...state,
@@ -23,38 +26,41 @@ export const calculatorReducer = (state = {}, action) => {
 			}
 		}
 
+		case types.clean:
+			return initContext();
+
+		case types.backspace: {
+			const { input } = state;
+			const inputString = input.toString();
+			const resultString = inputString.slice(0, -1);
+			
+			let result = parseFloat(resultString);
+			if (!resultString || isNaN(result)) {
+				result = 0;
+			}
+
+			return {
+				...state,
+				input: result,
+				displayInput: result
+			}
+		}
+
 		case types.operation: {
-			const { value, operation } = action.payload;
+			const { operation } = action.payload;
+			const { input } = state;
 
 			return {
 				...state,
 				input: '',
-				prevInput: value,
-				displayOperation: `${value} ${operation}`,
+				prevInput: input,
+				displayOperation: `${input} ${operation}`,
 				operation
 			}
 		}
 
-		case types.plus: {
-			const { payload } = action;
-
-			const value = parseFloat(payload);
-
-			if (!value) {
-				return state;
-			}
-
-			return {
-				...state,
-				displayOperation: `${value} +`,
-				operation: `+`,
-				input: '',
-				prevInput: value,
-			}
-		}
-
 		case types.result: {
-			const { prevInput, operation, input } = action.payload;
+			const { prevInput, operation, input } = state;
 			let inputNumber = parseFloat(input);
 
 			if (!operation) {
@@ -81,15 +87,6 @@ export const calculatorReducer = (state = {}, action) => {
 				displayOperation
 			}
 		}
-
-		case types.clean:
-			return initContext();
-
-		case types.backspace:
-			return {
-				...state,
-				input: action.payload.slice(0, -1)
-			}
 
 		default:
 			return state;

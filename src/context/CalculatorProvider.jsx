@@ -39,7 +39,6 @@ export const CalculatorProvider = ({ children }) => {
 	const backspaceClicked = () => {
 		const action = {
 			type: types.backspace,
-			payload: calculatorState.input,
 		};
 
 		dispatch(action);
@@ -50,7 +49,6 @@ export const CalculatorProvider = ({ children }) => {
 			type: types.operation,
 			payload: {
 				operation,
-				value: calculatorState.input
 			},
 		};
 
@@ -58,17 +56,9 @@ export const CalculatorProvider = ({ children }) => {
 	};
 
 	const resultClicked = () => {
-		const { prevInput, operation, input } = calculatorState;
-
 		const action = {
 			type: types.result,
-			payload: {
-				prevInput,
-				operation,
-				input
-			}
 		};
-
 
 		dispatch(action);
 	};
