@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { CalculatorContext } from "./context";
+import { CalculatorContext } from "../context";
 
 export const ResultBox = () => {
 	const { displayInput, changeInput, displayOperation } = useContext(CalculatorContext);
