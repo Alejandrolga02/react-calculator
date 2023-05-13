@@ -1,25 +1,31 @@
 import { initContext, types } from './';
-import { operations } from '../helpers';
+import { operations, cleanNumber } from '../helpers';
 
 export const calculatorReducer = (state = {}, action) => {
 	switch (action.type) {
-		case types.numberClicked:
+		case types.numberClicked: { 
+			const value = cleanNumber(state.input + action.payload);
+			
 			return {
 				...state,
-				input: state.input + action.payload,
-				displayInput: state.input + action.payload,
+				input: value,
+				displayInput: value,
 			}
+		}
 
-		case types.typedIn:
+		case types.typedIn: {
+			const value = cleanNumber(action.payload);
+
 			return {
 				...state,
-				input: action.payload,
-				displayInput: action.payload
+				input: value,
+				displayInput: value
 			}
+		}
 
 		case types.minus: {
 			const { payload } = action;
-
+			console.log(payload);
 			const value = parseFloat(payload);
 
 			if (!value) {
@@ -55,20 +61,30 @@ export const calculatorReducer = (state = {}, action) => {
 
 		case types.result: {
 			const { prevInput, operation, input } = action.payload;
-			let inputNumber = parseFloat(input)
-			
-			
-			let displayInput = 0;
+			let inputNumber = parseFloat(input);
+
+			if (!operation) {
+				return {
+					...state,
+					displayOperation: `${input} =`
+				}
+			}
+
+			let result = 0;
+			let displayOperation = '';
 			if (!inputNumber || isNaN(inputNumber)) {
-				displayInput = operations[operation](prevInput, prevInput);
+				result = operations[operation](prevInput, prevInput);
+				displayOperation = `${prevInput} ${operation} ${prevInput} =`
 			} else {
-				displayInput = operations[operation](prevInput, inputNumber);
+				result = operations[operation](prevInput, inputNumber);
+				displayOperation = `${prevInput} ${operation} ${inputNumber} =`;
 			}
 
 			return {
 				...state,
-				displayInput,
-				displayOperation: ''
+				displayInput: result,
+				prevInput: result,
+				displayOperation
 			}
 		}
 

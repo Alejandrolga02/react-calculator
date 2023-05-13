@@ -19,7 +19,7 @@ export const CalculatorProvider = ({ children }) => {
 
 	const changeInput = (value) => {
 		const payload = value;
-
+		
 		const action = {
 			type: types.typedIn,
 			payload,

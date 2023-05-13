@@ -1,8 +1,8 @@
 export const initContext = () => {
 	const state = {
-		input: "",
+		input: 0,
 		prevInput: "",
-		displayInput: "",
+		displayInput: 0,
 		displayOperation: "",
 		operation: "",
 	};
