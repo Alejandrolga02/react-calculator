@@ -3,7 +3,7 @@ import { operations, cleanNumber } from '../helpers';
 
 export const calculatorReducer = (state = {}, action) => {
 	switch (action.type) {
-		case types.numberClicked: { 
+		case types.numberClicked: {
 			const { input } = state;
 			const { payload } = action;
 
@@ -22,7 +22,7 @@ export const calculatorReducer = (state = {}, action) => {
 			const { input } = state;
 			const inputString = input.toString();
 			const resultString = inputString.slice(0, -1);
-			
+
 			let result = parseFloat(resultString);
 			if (!resultString || isNaN(result)) {
 				result = 0;
@@ -46,7 +46,15 @@ export const calculatorReducer = (state = {}, action) => {
 
 		case types.operation: {
 			const { operation } = action.payload;
-			const { input } = state;
+			const { input, prevInput } = state;
+
+			if (input === '') {
+				return {
+					...state,
+					operation,
+					displayOperation: `${prevInput} ${operation}`,
+				}
+			}
 
 			return {
 				...state,
@@ -55,6 +63,7 @@ export const calculatorReducer = (state = {}, action) => {
 				displayOperation: `${input} ${operation}`,
 				operation
 			}
+
 		}
 
 		case types.result: {
@@ -72,6 +81,7 @@ export const calculatorReducer = (state = {}, action) => {
 			let displayOperation = '';
 			if (!inputNumber || isNaN(inputNumber)) {
 				result = operations[operation](prevInput, prevInput);
+				inputNumber = prevInput;
 				displayOperation = `${prevInput} ${operation} ${prevInput} =`
 			} else {
 				result = operations[operation](prevInput, inputNumber);
@@ -82,6 +92,7 @@ export const calculatorReducer = (state = {}, action) => {
 				...state,
 				displayInput: result,
 				prevInput: result,
+				input: inputNumber,
 				displayOperation
 			}
 		}
