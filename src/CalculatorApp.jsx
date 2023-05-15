@@ -1,5 +1,5 @@
 import { IconContext } from "react-icons";
-import { RiNumber0, RiNumber1, RiNumber2, RiNumber3, RiNumber4, RiNumber5, RiNumber6, RiNumber7, RiNumber8, RiNumber9, FaDivide, FaTimes, TbLetterC, BsDot, FaMinus, FaPlus } from "react-icons/all";
+import { RiNumber0, RiNumber1, RiNumber2, RiNumber3, RiNumber4, RiNumber5, RiNumber6, RiNumber7, RiNumber8, RiNumber9, FaDivide, FaTimes, TbLetterC, FaMinus, FaPlus, IoChevronUpOutline, BsDot } from "react-icons/all";
 
 import { NumberButton, ClearButton, BackspaceButton, ResultBox, OperationButton, ResultButton } from "./components/";
 
@@ -15,26 +15,27 @@ export const CalculatorApp = () => {
 				<ClearButton icon={<TbLetterC />} />
 				<OperationButton operation="/" icon={<FaDivide />} />
 				<BackspaceButton />
-				<OperationButton operation="*" icon={<FaTimes />} />
+				<OperationButton operation="^" icon={<IoChevronUpOutline />} />
 
 				<NumberButton value={"7"} icon={<RiNumber7 />} />
 				<NumberButton value={"8"} icon={<RiNumber8 />} />
 				<NumberButton value={"9"} icon={<RiNumber9 />} />
-				<OperationButton operation="-" icon={<FaMinus />} />
+				<OperationButton operation="*" icon={<FaTimes />} />
 
 				<NumberButton value={"4"} icon={<RiNumber4 />} />
 				<NumberButton value={"5"} icon={<RiNumber5 />} />
 				<NumberButton value={"6"} icon={<RiNumber6 />} />
-				<OperationButton operation="+" icon={<FaPlus />} />
+				<OperationButton operation="-" icon={<FaMinus />} />
 
 				<NumberButton value={"1"} icon={<RiNumber1 />} />
 				<NumberButton value={"2"} icon={<RiNumber2 />} />
 				<NumberButton value={"3"} icon={<RiNumber3 />} />
-				<ResultButton />
+				<OperationButton operation="+" icon={<FaPlus />} />
 
-				<NumberButton value={"."} icon={<BsDot />} />
+				<NumberButton value="." icon={<BsDot />} />
 				<NumberButton value={"0"} icon={<RiNumber0 />} />
 				<ToggleSignButton />
+				<ResultButton />
 			</div>
 		</IconContext.Provider>
 	);
