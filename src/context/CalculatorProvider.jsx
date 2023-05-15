@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { CalculatorContext, types, calculatorReducer, initContext } from "./";
 
 export const CalculatorProvider = ({ children }) => {
-	const [calculatorState, dispatch] = useReducer(calculatorReducer, {}, initContext);
+	const [calculatorState, dispatch] = useReducer(calculatorReducer, {}, () => initContext());
 
 	const numberClicked = (value) => {
 		const payload = value;

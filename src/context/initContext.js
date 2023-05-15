@@ -1,11 +1,13 @@
-export const initContext = () => {
+export const initContext = (input = "0") => {
 	const state = {
-		input: 0,
-		prevInput: "",
-		displayInput: 0,
+		input,
+		displayInput: input,
+		prevInput: 0,
 		displayOperation: "",
-		operation: "",
+		operation: '',
+		operationMade: false,
+		operationChanged: false
 	};
-
+	
 	return state;
 };

@@ -6,7 +6,7 @@ export const cleanNumber = (input = '') => {
 	}
 
 	if (inputArr[0] === "0" && inputArr[1] !== ".") {
-		return inputArr.slice(1,15)
+		return inputArr.slice(1,15).join('');
 	}
 	
 	let dotFound = false;

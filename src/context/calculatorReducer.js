@@ -4,8 +4,12 @@ import { operations, cleanNumber } from '../helpers';
 export const calculatorReducer = (state = {}, action) => {
 	switch (action.type) {
 		case types.numberClicked: {
-			const { input } = state;
+			const { input, operationMade, operationChanged } = state;
 			const { payload } = action;
+
+			if (operationMade && !operationChanged) {
+				return initContext(payload);
+			}
 
 			const value = cleanNumber(input + payload);
 			return {
@@ -34,7 +38,7 @@ export const calculatorReducer = (state = {}, action) => {
 		}
 
 		case types.toggleSign: {
-			const value = state.input * -1;
+			const value = (state.input * -1).toString();
 			return {
 				...state,
 				input: value,
@@ -44,23 +48,31 @@ export const calculatorReducer = (state = {}, action) => {
 
 		case types.operation: {
 			const { operation } = action.payload;
-			const { input, prevInput } = state;
-			const inputConverted = parseFloat(input);
-			
+			const { input, prevInput, operationMade } = state;
+
 			if (input === "0") {
 				return {
 					...state,
 					operation,
+					operationChanged: true,
 					displayOperation: `${prevInput} ${operation}`,
 				}
+			}
+
+			let inputConverted = parseFloat(input);
+			let displayOperation = `${input} ${operation}`;
+			if (operationMade) {
+				inputConverted = prevInput;
+				displayOperation = `${inputConverted} ${operation}`;
 			}
 
 			return {
 				...state,
 				input: "0",
 				prevInput: inputConverted,
-				displayOperation: `${input} ${operation}`,
-				operation
+				displayOperation,
+				operation,
+				operationChanged: true
 			}
 
 		}
@@ -89,10 +101,12 @@ export const calculatorReducer = (state = {}, action) => {
 
 			return {
 				...state,
-				displayInput: result,
+				displayInput: result.toString(),
 				displayOperation,
-				input: inputNumber,
+				input: inputNumber.toString(),
 				prevInput: result,
+				operationMade: true,
+				operationChanged: false
 			}
 		}
 
