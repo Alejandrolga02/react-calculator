@@ -5,4 +5,5 @@ export const types = {
 	clean: '[CALCULATE] CLEAN',
 	result: '[CALCULATE] RESULT',
 	backspace: '[CALCULATE] BACKSPACE',
+	toggleSign: '[CALCULATE] TOGGLE SIGN',
 }

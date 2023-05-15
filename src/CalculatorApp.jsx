@@ -4,6 +4,7 @@ import { RiNumber0, RiNumber1, RiNumber2, RiNumber3, RiNumber4, RiNumber5, RiNum
 import { NumberButton, ClearButton, BackspaceButton, ResultBox, OperationButton, ResultButton } from "./components/";
 
 import "./styles.css";
+import { ToggleSignButton } from "./components/ToggleSignButton";
 
 export const CalculatorApp = () => {
 	return (
@@ -14,25 +15,26 @@ export const CalculatorApp = () => {
 				<ClearButton icon={<TbLetterC />} />
 				<OperationButton operation="/" icon={<FaDivide />} />
 				<BackspaceButton />
-				<ResultButton />
+				<OperationButton operation="*" icon={<FaTimes />} />
 
 				<NumberButton value={"7"} icon={<RiNumber7 />} />
 				<NumberButton value={"8"} icon={<RiNumber8 />} />
 				<NumberButton value={"9"} icon={<RiNumber9 />} />
-				<OperationButton operation="*" icon={<FaTimes />} />
+				<OperationButton operation="-" icon={<FaMinus />} />
 
 				<NumberButton value={"4"} icon={<RiNumber4 />} />
 				<NumberButton value={"5"} icon={<RiNumber5 />} />
 				<NumberButton value={"6"} icon={<RiNumber6 />} />
-				<OperationButton operation="-" icon={<FaMinus />} />
+				<OperationButton operation="+" icon={<FaPlus />} />
 
 				<NumberButton value={"1"} icon={<RiNumber1 />} />
 				<NumberButton value={"2"} icon={<RiNumber2 />} />
 				<NumberButton value={"3"} icon={<RiNumber3 />} />
-				<OperationButton operation="+" icon={<FaPlus />} />
+				<ResultButton />
 
 				<NumberButton value={"."} icon={<BsDot />} />
 				<NumberButton value={"0"} icon={<RiNumber0 />} />
+				<ToggleSignButton />
 			</div>
 		</IconContext.Provider>
 	);

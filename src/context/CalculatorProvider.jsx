@@ -52,17 +52,27 @@ export const CalculatorProvider = ({ children }) => {
 		dispatch(action);
 	};
 
+	const toggleSign = () => {
+		const action = {
+			type: types.toggleSign,
+		};
+
+		dispatch(action);
+	};
+
+
 	return (
 		<CalculatorContext.Provider
 			value={{
 				...calculatorState,
 
 				// Methods
-				numberClicked,
-				cleanClicked,
-				backspaceClicked,
-				setOperation,
-				resultClicked,
+				numberClicked, 
+				cleanClicked, 
+				backspaceClicked, 
+				setOperation, 
+				resultClicked, 
+				toggleSign 
 			}}>
 			{children}
 		</CalculatorContext.Provider>

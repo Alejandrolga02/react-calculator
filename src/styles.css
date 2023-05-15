@@ -566,6 +566,10 @@ video {
   max-width: 36rem;
 }
 
+.cursor-auto {
+  cursor: auto;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }

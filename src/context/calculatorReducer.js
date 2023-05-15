@@ -35,6 +35,15 @@ export const calculatorReducer = (state = {}, action) => {
 			}
 		}
 
+		case types.toggleSign: {
+			const value = state.input * -1;
+			return {
+				...state,
+				input: value,
+				displayInput: value,
+			}
+		}
+
 		case types.operation: {
 			const { operation } = action.payload;
 			const { input } = state;
