@@ -60,7 +60,6 @@ export const CalculatorProvider = ({ children }) => {
 		dispatch(action);
 	};
 
-
 	return (
 		<CalculatorContext.Provider
 			value={{
@@ -72,7 +71,7 @@ export const CalculatorProvider = ({ children }) => {
 				backspaceClicked, 
 				setOperation, 
 				resultClicked, 
-				toggleSign 
+				toggleSign, 
 			}}>
 			{children}
 		</CalculatorContext.Provider>

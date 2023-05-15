@@ -1,2 +1,2 @@
 export * from './operations';
-export * from './validateNumber';
+export * from './cleanNumber';

@@ -20,18 +20,16 @@ export const calculatorReducer = (state = {}, action) => {
 
 		case types.backspace: {
 			const { input } = state;
-			const inputString = input.toString();
-			const resultString = inputString.slice(0, -1);
 
-			let result = parseFloat(resultString);
-			if (!resultString || isNaN(result)) {
-				result = 0;
+			let resultString = input.slice(0, -1);
+			if (resultString === '') {
+				resultString = '0';
 			}
 
 			return {
 				...state,
-				input: result,
-				displayInput: result
+				input: resultString,
+				displayInput: resultString
 			}
 		}
 
@@ -47,8 +45,9 @@ export const calculatorReducer = (state = {}, action) => {
 		case types.operation: {
 			const { operation } = action.payload;
 			const { input, prevInput } = state;
-
-			if (input === '') {
+			const inputConverted = parseFloat(input);
+			
+			if (input === "0") {
 				return {
 					...state,
 					operation,
@@ -58,8 +57,8 @@ export const calculatorReducer = (state = {}, action) => {
 
 			return {
 				...state,
-				input: '',
-				prevInput: input,
+				input: "0",
+				prevInput: inputConverted,
 				displayOperation: `${input} ${operation}`,
 				operation
 			}
@@ -91,9 +90,9 @@ export const calculatorReducer = (state = {}, action) => {
 			return {
 				...state,
 				displayInput: result,
-				prevInput: result,
+				displayOperation,
 				input: inputNumber,
-				displayOperation
+				prevInput: result,
 			}
 		}
 

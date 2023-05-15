@@ -10,7 +10,7 @@ export const ResultBox = () => {
 		setOperation, 
 		resultClicked, 
 		backspaceClicked, 
-		cleanClicked
+		cleanClicked,
 	} = useContext(CalculatorContext);
 	
 	useEffect(() => {
@@ -18,7 +18,7 @@ export const ResultBox = () => {
 			e.preventDefault();
 
 			const { key, keyCode } = e;
-			if ((keyCode >= 96 && keyCode <= 105) || (keyCode >= 48 && keyCode <= 57)) {
+			if ((keyCode >= 96 && keyCode <= 105) || (keyCode >= 48 && keyCode <= 57) || key === '.') {
 				numberClicked(key);
 			} else if (key === '+' || key === '-' || key === '*' || key === '/') {
 				setOperation(key);
