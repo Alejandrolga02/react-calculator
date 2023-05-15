@@ -17,17 +17,6 @@ export const CalculatorProvider = ({ children }) => {
 		dispatch(action);
 	};
 
-	const changeInput = (value) => {
-		const payload = value;
-
-		const action = {
-			type: types.typedIn,
-			payload,
-		};
-
-		dispatch(action);
-	};
-
 	const cleanClicked = () => {
 		const action = {
 			type: types.clean,
@@ -70,7 +59,6 @@ export const CalculatorProvider = ({ children }) => {
 
 				// Methods
 				numberClicked,
-				changeInput,
 				cleanClicked,
 				backspaceClicked,
 				setOperation,

@@ -15,17 +15,6 @@ export const calculatorReducer = (state = {}, action) => {
 			}
 		}
 
-		case types.typedIn: {
-			const { payload } = action;
-			const value = cleanNumber(payload);
-
-			return {
-				...state,
-				input: value,
-				displayInput: value
-			}
-		}
-
 		case types.clean:
 			return initContext();
 
